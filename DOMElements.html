@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Errors</title>
+		<script src="InheritanceCreateObject.js"></script>
+	</head>
+	<body>
+		<p id="para-01"><span>First span</span></p>
+		<div id="div-01">Here is div-01</div>
+		<div id="div-02">Here is div-02</div>
+		<script type="text/javascript">
+			var p01 = document.getElementById('para-01');
+			console.log(p01.firstChild.nodeName);
+			
+			var el = document.getElementById("div-01").nextSibling,
+				i = 1;
+			console.log("Siblings of div-01:");
+			
+			while(el) {
+				console.log(i + '.' +el.nodeName);
+				el = el.nextSibling;
+				i++;
+			}
+			function attri() {
+				var a = document.createAttribute("attri_1");
+				console.log(a.constructor.name);
+				a.value = "value 1";
+				p01.setAttributeNode(a);
+				console.log(p01.getAttribute("attri_1"));
+			}
+			function addTextNode(text) {
+				var newText = document.createTextNode(text);
+				p01.appendChild(newText);
+			}
+			attri();
+			addTextNode("Text Node");
+			function addElement() {
+				var newDiv = document.createElement("div");
+				newContent = document.createTextNode("Hello World!");
+				newDiv.appendChild(newContent);
+				var currentDiv = document.getElementById("div-01");
+				document.body.insertBefore(newDiv, currentDiv);
+			}
+			addElement();
+		</script>
+	</body>
+</html>
